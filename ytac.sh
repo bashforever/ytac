@@ -1,23 +1,18 @@
 #!/bin/bash
-# Script doing recursive search for image files and reduces quality not resolution
+# Script doing the following tasks
+# 1 ... downloading the youtube-video given as parameter as mp4
+# 2 ... extracting audio and writing it as mp3
+# 3 ... splitting audio into chunks of 3 minutes with a numbering in the filename
 
 # Parameters:
 # $1 ... youtube-url
-# $2 ... outfile-name
+# $2 ... desired outfile-name e.g. My_Audio_Project, also used as working subdir
 
 # globale Konstante
 LOGFILE="ytac.log"
 
-# testparameter: falls 1 wird keine konversion durchgefuehrt
-NOCONV=0
-
-# groessenlimit fuer das ignorieren von kleinen files (bytes)
-LIMIT=6000000
 VIDEO="$1"
 OUTFILE="$2"
-# for test only (Bibi Blocksberg)
-# VIDEO="https://www.youtube.com/watch?v=TM6b4pAKP0Y"
-WORKDIR="/home/immanuel/Downloads"
 WORKDIR="/home/immanuel/Skripts/ytac"
 
 
@@ -41,22 +36,12 @@ getmovie () {
 
 }
 
-
-
-
-
-
-
-
-
-
-
 # ===================== function logtext ======================================
 # Parameter: Text der ins Logfile geschrieben werden soll
 # function for writing text to logfile
 logtext () {
    echo "`date`: " $1 2>&1 | tee -a $LOGFILE
-}   
+}
 
 # ============================ MAIN ===================================
 
